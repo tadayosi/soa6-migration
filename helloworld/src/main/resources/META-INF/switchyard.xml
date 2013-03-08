@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0">
+    <composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="helloworld" targetNamespace="urn:switchyard-quickstart:helloworld:0.1.0">
+        <service name="SimpleListener" promote="FirstServiceESB/SimpleListener">
+            <jms:binding.jms xmlns:jms="urn:switchyard-component-camel-jms:config:1.0">
+                <jms:queue>quickstart_helloworld_Request</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+        </service>
+        <component name="FirstServiceESB">
+            <service name="SimpleListener">
+                <swyd:interface.esb xmlns:swyd="urn:switchyard-config:switchyard:1.0" inputType="java:java.lang.String" />
+            </service>
+            <implementation.camel xmlns="urn:switchyard-component-camel:config:1.0">
+                <route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.helloworld.SimpleListener">
+                    <bean beanType="org.switchyard.quickstarts.helloworld.MyJMSListenerAction" method="displayMessage" />
+                    <log message="[message] '${body}'" />
+                </route>
+            </implementation.camel>
+        </component>
+    </composite>
+</switchyard>
