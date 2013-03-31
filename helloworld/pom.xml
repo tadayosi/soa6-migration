@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.switchyard.quickstarts</groupId>
         <artifactId>soa6-migration</artifactId>
-        <version>0.7.0.Final</version>
+        <version>0.8.0.Final</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>soa6-migration-helloworld</artifactId>
