@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>Quickstart_webservice_consumer1</context-root>
+</jboss-web>

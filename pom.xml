@@ -39,6 +39,7 @@
     </organization>
     <modules>
         <module>helloworld</module>
+        <module>webservice_consumer1</module>
     </modules>
     <!-- Conditionally include the assembly module.  It's not always present e.g. in the quickstarts distro. -->
     <profiles>

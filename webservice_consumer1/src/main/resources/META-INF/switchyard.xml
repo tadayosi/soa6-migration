@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    xmlns:soap="urn:switchyard-component-soap:config:1.0" xmlns:jms="urn:switchyard-component-camel-jms:config:1.0"
+    xmlns:camel="urn:switchyard-component-camel:config:1.0">
+
+    <sca:composite name="webservice_consumer1" targetNamespace="urn:switchyard-quickstart:webservice_consumer1:0.1.0">
+        <sca:service name="WebserviceConsumer1" promote="MyServiceCategory/WebserviceConsumer1">
+            <jms:binding.jms>
+                <jms:queue>quickstart_webservice_consumer1_Request</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:component name="MyServiceCategory">
+            <sca:service name="WebserviceConsumer1">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:service>
+            <camel:implementation.camel>
+                <camel:xml path="META-INF/route.xml" />
+            </camel:implementation.camel>
+            <sca:reference name="HelloWorldWS">
+                <interface.esb inputType="java:java.lang.String" outputType="java:java.lang.String" />
+            </sca:reference>
+        </sca:component>
+        <sca:reference name="HelloWorldWS" promote="MyServiceCategory/HelloWorldWS" multiplicity="1..1">
+            <sca:interface.wsdl
+                interface="http://localhost:8080/Quickstart_webservice_consumer1/HelloWorldWS?wsdl#wsdl.porttype(HelloWorld)" />
+            <soap:binding.soap>
+                <soap:wsdl>http://localhost:8080/Quickstart_webservice_consumer1/HelloWorldWS?wsdl</soap:wsdl>
+                <soap:endpointAddress>http://localhost:8080/Quickstart_webservice_consumer1/HelloWorldWS</soap:endpointAddress>
+            </soap:binding.soap>
+        </sca:reference>
+    </sca:composite>
+
+</switchyard>

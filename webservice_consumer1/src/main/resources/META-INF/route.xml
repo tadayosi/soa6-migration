@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.webservice.consumer1.WebserviceConsumer1"
+    errorHandlerRef="loggingErrorHandler">
+    <log message="Request is: ${body}" />
+    <to uri="switchyard://HelloWorldWS?operationName=sayHello" />
+    <log message="Response is: ${body}" />
+</route>
