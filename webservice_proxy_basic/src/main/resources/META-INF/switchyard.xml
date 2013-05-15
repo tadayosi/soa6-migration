@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912">
+
+    <sca:composite name="webservice_proxy_basic" targetNamespace="urn:switchyard-quickstart:webservice_proxy_basic:1.0">
+        <sca:service name="Proxy" promote="Proxy_Basic/Proxy">
+            <soap:binding.soap xmlns:soap="urn:switchyard-component-soap:config:1.0">
+                <soap:wsdl>META-INF/HelloWorldWS.wsdl</soap:wsdl>
+                <soap:contextPath>proxy</soap:contextPath>
+            </soap:binding.soap>
+        </sca:service>
+        <sca:component name="Proxy_Basic">
+            <sca:service name="Proxy">
+                <sca:interface.wsdl interface="META-INF/HelloWorldWS.wsdl#wsdl.porttype(HelloWorld)" />
+            </sca:service>
+            <camel:implementation.camel xmlns:camel="urn:switchyard-component-camel:config:1.0">
+                <camel:xml path="META-INF/route.xml" />
+            </camel:implementation.camel>
+            <sca:reference name="HelloWorldWS">
+                <sca:interface.wsdl interface="META-INF/HelloWorldWS.wsdl#wsdl.porttype(HelloWorld)" />
+            </sca:reference>
+        </sca:component>
+        <sca:reference name="HelloWorldWS" promote="Proxy_Basic/HelloWorldWS" multiplicity="0..1">
+            <soap:binding.soap xmlns:soap="urn:switchyard-component-soap:config:1.0">
+                <soap:wsdl>META-INF/HelloWorldWS.wsdl</soap:wsdl>
+                <soap:endpointAddress>http://localhost:8080/Quickstart_webservice_proxy_basic/HelloWorldWS</soap:endpointAddress>
+            </soap:binding.soap>
+        </sca:reference>
+    </sca:composite>
+
+</switchyard>

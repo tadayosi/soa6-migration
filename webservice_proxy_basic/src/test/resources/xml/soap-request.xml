@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="http://webservice_proxy_basic/helloworld">
+    <S:Body>
+        <ns2:sayHello>
+            <toWhom>Jimbo</toWhom>
+        </ns2:sayHello>
+    </S:Body>
+</S:Envelope>

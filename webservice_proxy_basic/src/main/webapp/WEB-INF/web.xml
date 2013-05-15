@@ -1,0 +1,10 @@
+<web-app>
+    <servlet>
+        <servlet-name>HelloWorldWS</servlet-name>
+        <servlet-class>org.switchyard.quickstarts.webservice.proxy.basic.HelloWorldWS</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HelloWorldWS</servlet-name>
+        <url-pattern>/HelloWorldWS</url-pattern>
+    </servlet-mapping>
+</web-app>

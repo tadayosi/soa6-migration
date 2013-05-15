@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservice_proxy_basic/helloworld"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://webservice_proxy_basic/helloworld"
+    name="HelloWorldWSService">
+    <types>
+        <xs:schema xmlns:tns="http://webservice_proxy_basic/helloworld" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://webservice_proxy_basic/helloworld" version="1.0">
+            <xs:element name="sayHello" type="tns:sayHello" />
+            <xs:element name="sayHelloResponse" type="tns:sayHelloResponse" />
+            <xs:complexType name="sayHello">
+                <xs:sequence>
+                    <xs:element name="toWhom" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="sayHelloResponse">
+                <xs:sequence>
+                    <xs:element name="return" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
+    </types>
+    <message name="sayHello">
+        <part name="parameters" element="tns:sayHello" />
+    </message>
+    <message name="sayHelloResponse">
+        <part name="parameters" element="tns:sayHelloResponse" />
+    </message>
+    <portType name="HelloWorld">
+        <operation name="sayHello">
+            <input message="tns:sayHello" />
+            <output message="tns:sayHelloResponse" />
+        </operation>
+    </portType>
+    <binding name="HelloWorldPortBinding" type="tns:HelloWorld">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+        <operation name="sayHello">
+            <soap:operation soapAction="" />
+            <input>
+                <soap:body use="literal" />
+            </input>
+            <output>
+                <soap:body use="literal" />
+            </output>
+        </operation>
+    </binding>
+    <service name="HelloWorldWSService">
+        <port name="HelloWorldPort" binding="tns:HelloWorldPortBinding">
+            <soap:address location="http://localhost:8080/Quickstart_webservice_proxy_basic/HelloWorldWS" />
+        </port>
+    </service>
+</definitions>

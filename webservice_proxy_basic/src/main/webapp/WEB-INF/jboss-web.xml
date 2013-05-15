@@ -1,0 +1,3 @@
+<jboss-web>
+    <context-root>Quickstart_webservice_proxy_basic</context-root>
+</jboss-web>

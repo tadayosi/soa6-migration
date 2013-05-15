@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.webservice.proxy.basic.Proxy">
+    <from uri="switchyard://Proxy" />
+    <log message="Message before SOAPProxy:\n${body}" />
+    <to uri="switchyard://HelloWorldWS" />
+    <log message="Message after SOAPProxy:\n${body}" />
+</route>
