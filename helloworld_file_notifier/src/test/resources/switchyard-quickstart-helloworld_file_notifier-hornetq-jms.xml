@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messaging-deployment xmlns="urn:jboss:messaging-deployment:1.0">
+    <hornetq-server>
+        <jms-destinations>
+            <jms-queue name="quickstart_helloworld_file_notifier_Request">
+                <entry name="queue/quickstart_helloworld_file_notifier_Request" />
+            </jms-queue>
+        </jms-destinations>
+    </hornetq-server>
+</messaging-deployment>

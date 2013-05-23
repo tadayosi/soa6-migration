@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    xmlns:camel="urn:switchyard-component-camel:config:1.0" xmlns:bean="urn:switchyard-component-bean:config:1.0"
+    xmlns:jms="urn:switchyard-component-camel-jms:config:1.0" xmlns:file="urn:switchyard-component-camel-file:config:1.0">
+
+    <sca:composite name="helloworld_file_notifier" targetNamespace="urn:switchyard-quickstart:helloworld_file_notifier:0.1.0">
+        <sca:service name="SimpleListener" promote="FirstServiceESB/SimpleListener">
+            <jms:binding.jms>
+                <jms:queue>quickstart_helloworld_file_notifier_Request</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:component name="FirstServiceESB">
+            <sca:service name="SimpleListener">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:service>
+            <camel:implementation.camel>
+                <camel:xml path="META-INF/route.xml" />
+            </camel:implementation.camel>
+            <sca:reference name="DisplayRouterListener">
+                <sca:interface.java interface="org.switchyard.quickstarts.helloworld.file.notifier.DisplayRouterListener" />
+            </sca:reference>
+            <sca:reference name="FileRouterListener">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:reference>
+        </sca:component>
+        <sca:component name="routerToDisplay">
+            <sca:service name="DisplayRouterListener">
+                <sca:interface.java interface="org.switchyard.quickstarts.helloworld.file.notifier.DisplayRouterListener" />
+            </sca:service>
+            <bean:implementation.bean class="org.switchyard.quickstarts.helloworld.file.notifier.MyJMSListenerAction" />
+        </sca:component>
+        <sca:reference name="routerToFile" promote="FirstServiceESB/FileRouterListener" multiplicity="1..1">
+            <file:binding.file>
+                <file:directory>target/output</file:directory>
+                <file:autoCreate>true</file:autoCreate>
+                <file:fileName>results.log</file:fileName>
+            </file:binding.file>
+        </sca:reference>
+    </sca:composite>
+
+</switchyard>
