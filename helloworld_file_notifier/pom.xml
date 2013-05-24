@@ -69,6 +69,12 @@
     </dependencies>
     <build>
         <finalName>${project.artifactId}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -101,6 +107,9 @@
                         <param>org.switchyard.component.bean.config.model.BeanSwitchYardScanner</param>
                         <param>org.switchyard.transform.config.model.TransformSwitchYardScanner</param>
                     </scannerClassNames>
+                    <scanDirectories>
+                        <param>${project.build.outputDirectory}</param>
+                    </scanDirectories>
                 </configuration>
                 <executions>
                     <execution>

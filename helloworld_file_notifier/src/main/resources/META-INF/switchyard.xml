@@ -32,7 +32,7 @@
         </sca:component>
         <sca:reference name="routerToFile" promote="FirstServiceESB/FileRouterListener" multiplicity="1..1">
             <file:binding.file>
-                <file:directory>target/output</file:directory>
+                <file:directory>${project.build.directory}/output</file:directory>
                 <file:autoCreate>true</file:autoCreate>
                 <file:fileName>results.log</file:fileName>
             </file:binding.file>
