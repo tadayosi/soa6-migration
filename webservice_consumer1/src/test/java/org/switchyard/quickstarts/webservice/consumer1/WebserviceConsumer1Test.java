@@ -22,7 +22,7 @@ import org.switchyard.transform.config.model.TransformSwitchYardScanner;
         config = SwitchYardTestCaseConfig.SWITCHYARD_XML,
         mixins = { HTTPMixIn.class, CDIMixIn.class, HornetQMixIn.class },
         scanners = { BeanSwitchYardScanner.class, TransformSwitchYardScanner.class })
-public class WebserviceConsumerTest {
+public class WebserviceConsumer1Test {
     
     private static final String WEB_SERVICE = "http://localhost:8080/Quickstart_webservice_consumer1/HelloWorldWS";
     private static final String QUEUE_NAME = "quickstart_webservice_consumer1_Request";
