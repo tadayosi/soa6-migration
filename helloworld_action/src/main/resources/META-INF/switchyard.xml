@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0">
+    <composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912" name="helloworld" targetNamespace="urn:switchyard-quickstart:helloworld:0.1.0">
+        <service name="SimpleListener" promote="HelloWorld_ActionESB/SimpleListener">
+            <jms:binding.jms xmlns:jms="urn:switchyard-component-camel-jms:config:1.0">
+                <jms:queue>quickstart_helloworld_action_Request</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+        </service>
+        <component name="HelloWorld_ActionESB">
+            <service name="SimpleListener">
+                <swyd:interface.esb xmlns:swyd="urn:switchyard-config:switchyard:1.0" inputType="java:java.lang.String" />
+            </service>
+            <implementation.camel xmlns="urn:switchyard-component-camel:config:1.0">
+                <xml path="META-INF/route.xml" />
+            </implementation.camel>
+            <reference name="notificationAction">
+                <swyd:interface.esb xmlns:swyd="urn:switchyard-config:switchyard:1.0" inputType="java:java.lang.String" outputType="java:java.lang.String" />
+            </reference>
+        </component>
+        <reference name="notificationAction" promote="HelloWorld_ActionESB/notificationAction" multiplicity="1..1">
+            <jms:binding.jms xmlns:jms="urn:switchyard-component-camel-jms:config:1.0">
+                <jms:queue>quickstart_helloworld_action_Response</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+                <jms:disableReplyTo>true</jms:disableReplyTo>
+            </jms:binding.jms>        	
+        </reference>
+    </composite>
+</switchyard>
