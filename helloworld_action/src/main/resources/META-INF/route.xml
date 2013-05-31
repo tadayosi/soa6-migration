@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.helloworld.action.SimpleListener"
+    errorHandlerRef="loggingErrorHandler">
+    <log message="[message] '${body}'" />
+    <bean beanType="org.switchyard.quickstarts.helloworld.action.MyJMSListenerAction" method="displayMessage" />
+    <bean beanType="org.switchyard.quickstarts.helloworld.action.MyJMSListenerAction" method="playWithMessage" />
+    <to uri="switchyard://notificationAction" />
+</route>

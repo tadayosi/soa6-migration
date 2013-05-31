@@ -39,6 +39,7 @@
     </organization>
     <modules>
         <module>helloworld</module>
+        <module>helloworld_action</module>
         <module>helloworld_file_notifier</module>
         <module>helloworld_ftp_action</module>
         <module>webservice_consumer1</module>
