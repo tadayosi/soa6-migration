@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    xmlns:camel="urn:switchyard-component-camel:config:1.0" xmlns:jms="urn:switchyard-component-camel-jms:config:1.0"
+    xmlns:file="urn:switchyard-component-camel-file:config:1.0">
+
+    <sca:composite name="helloworld_topic_notifier" targetNamespace="urn:switchyard-quickstart:helloworld_topic_notifier:0.1.0">
+        <sca:service name="FileRouterListener" promote="routerToFile/FileRouterListener">
+            <jms:binding.jms>
+                <jms:queue>quickstart_helloworld_topic_notifier_Request</jms:queue>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+        </sca:service>
+        <sca:component name="routerToFile">
+            <sca:service name="FileRouterListener">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:service>
+            <camel:implementation.camel>
+                <camel:xml path="META-INF/route.xml" />
+            </camel:implementation.camel>
+            <sca:reference name="NotifyFiles">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:reference>
+            <sca:reference name="NotifyTopics">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:reference>
+        </sca:component>
+        <sca:reference name="NotifyFiles" promote="routerToFile/NotifyFiles" multiplicity="1..1">
+            <file:binding.file>
+                <file:directory>${project.build.directory}/output</file:directory>
+                <file:autoCreate>true</file:autoCreate>
+                <file:fileName>results.log</file:fileName>
+            </file:binding.file>
+        </sca:reference>
+        <sca:reference name="NotifyTopics" promote="routerToFile/NotifyTopics" multiplicity="1..1">
+            <jms:binding.jms>
+                <jms:topic>helloworldtopic</jms:topic>
+                <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
+            </jms:binding.jms>
+        </sca:reference>
+    </sca:composite>
+
+</switchyard>

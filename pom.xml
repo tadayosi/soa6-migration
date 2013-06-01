@@ -42,7 +42,9 @@
         <module>helloworld_action</module>
         <module>helloworld_file_notifier</module>
         <module>helloworld_ftp_action</module>
+        <module>helloworld_topic_notifier</module>
         <module>webservice_consumer1</module>
+        <module>webservice_proxy_basic</module>
     </modules>
     <!-- Conditionally include the assembly module.  It's not always present e.g. in the quickstarts distro. -->
     <profiles>
