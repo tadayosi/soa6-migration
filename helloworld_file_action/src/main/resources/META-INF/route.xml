@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.helloworld.SimpleListener">
+    <bean beanType="com.example.switchyard.soa6_migration_helloworld_file_action.SimpleListener" method="displayMessage" />
+    <log message="[message] '${body}'" />
+    
+            <to uri="switchyard://FileRouterListener" />
+
+</route>

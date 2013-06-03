@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0"
+    xmlns:swyd="urn:switchyard-config:switchyard:1.0" xmlns:camel="urn:switchyard-component-camel:config:1.0"
+    xmlns:jms="urn:switchyard-component-camel-jms:config:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    name="soa6-migration-helloworld_file_action" xmlns:file="urn:switchyard-component-camel-file:config:1.0"
+    targetNamespace="urn:com.example.switchyard:soa6-migration-helloworld_file_action:1.0">
+    <sca:composite name="soa6-migration-helloworld_file_action"
+        targetNamespace="urn:com.example.switchyard:soa6-migration-helloworld_file_action:1.0">
+        <sca:service name="SimpleListener" promote="FirstServiceESB/SimpleListener">
+            <file:binding.file>
+                <file:directory>target/input</file:directory>
+                <file:fileName>test.txt</file:fileName>
+                <file:consume>
+                    <file:initialDelay>50</file:initialDelay>
+                    <file:delete>true</file:delete>
+                </file:consume>
+            </file:binding.file>
+        </sca:service>
+        <sca:component name="FirstServiceESB">
+            <sca:service name="SimpleListener">
+                <swyd:interface.esb
+                    xmlns:swyd="urn:switchyard-config:switchyard:1.0"
+                    inputType="java:java.lang.String" />
+            </sca:service>
+            <camel:implementation.camel
+                xmlns="urn:switchyard-component-camel:config:1.0">
+                <camel:xml path="META-INF/route.xml" />
+            </camel:implementation.camel>
+            <sca:reference name="FileRouterListener">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:reference>
+        </sca:component>
+        <sca:reference name="routerToFile"
+            promote="FirstServiceESB/FileRouterListener" multiplicity="1..1">
+            <file:binding.file>
+                <file:directory>${project.build.directory}/output</file:directory>
+                <file:autoCreate>true</file:autoCreate>
+                <file:fileName>results.log</file:fileName>
+            </file:binding.file>
+        </sca:reference>
+    </sca:composite>
+</switchyard>
