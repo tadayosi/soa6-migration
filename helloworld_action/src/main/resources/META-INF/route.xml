@@ -4,5 +4,8 @@
     <log message="[message] '${body}'" />
     <bean beanType="org.switchyard.quickstarts.helloworld.action.MyJMSListenerAction" method="displayMessage" />
     <bean beanType="org.switchyard.quickstarts.helloworld.action.MyJMSListenerAction" method="playWithMessage" />
+    <setHeader headerName="quickstart">
+        <constant>hello_world_action</constant>
+    </setHeader>
     <to uri="switchyard://notificationAction" />
 </route>

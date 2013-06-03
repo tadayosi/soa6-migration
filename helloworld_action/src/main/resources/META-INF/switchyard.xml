@@ -20,8 +20,8 @@
             </reference>
         </component>
         <reference name="notificationAction" promote="HelloWorld_ActionESB/notificationAction" multiplicity="1..1">
-            <!-- TODO <messageProp name="quickstart" value="hello_world_action" /> -->
             <jms:binding.jms xmlns:jms="urn:switchyard-component-camel-jms:config:1.0">
+                <jms:contextMapper includes=".*" />
                 <jms:queue>quickstart_helloworld_action_Response</jms:queue>
                 <jms:connectionFactory>#ConnectionFactory</jms:connectionFactory>
                 <jms:disableReplyTo>true</jms:disableReplyTo>

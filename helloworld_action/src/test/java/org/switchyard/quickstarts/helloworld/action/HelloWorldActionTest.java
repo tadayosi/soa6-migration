@@ -45,6 +45,7 @@ public class HelloWorldActionTest {
             assertThat(receivedMessage, is(instanceOf(TextMessage.class)));
             assertThat(((TextMessage) receivedMessage).getText(), is(equalTo("\nBEFORE**\n" + TEST_MESSAGE
                     + "\nAFTER**\n")));
+            assertThat(receivedMessage.getStringProperty("quickstart"), is(equalTo("hello_world_action")));
         } finally {
             HornetQMixIn.closeJMSSession(session);
         }
