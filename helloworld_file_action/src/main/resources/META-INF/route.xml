@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.helloworld.file.action.myFileListener">
+    <log message="[message] '${body}'" />
+    <bean beanType="org.switchyard.quickstarts.helloworld.file.action.MyAction" method="displayMessage" />
+    <bean beanType="org.switchyard.quickstarts.helloworld.file.action.MyAction" method="playWithMessage" />
+    <log message="[message] '${body}'" />
+</route>

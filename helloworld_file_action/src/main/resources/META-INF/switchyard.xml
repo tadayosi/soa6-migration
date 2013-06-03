@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0" xmlns:sca="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+    xmlns:camel="urn:switchyard-component-camel:config:1.0" xmlns:file="urn:switchyard-component-camel-file:config:1.0">
+    <sca:composite name="helloworld_file_action" targetNamespace="urn:switchyard-quickstart:helloworld_file_action:1.0">
+        <sca:service name="myFileListener" promote="myCategory/myFileListener">
+            <file:binding.file>
+                <file:directory>${project.build.directory}/input</file:directory>
+                <file:charset>UTF-8</file:charset>
+                <file:consume>
+                    <file:initialDelay>50</file:initialDelay>
+                    <file:delay>10000</file:delay>
+                    <file:delete>false</file:delete>
+                    <file:preMove>.esbWorking</file:preMove>
+                    <file:move>${project.build.directory}/output</file:move>
+                    <file:moveFailed>${project.build.directory}/error</file:moveFailed>
+                    <file:include>.*\.dat</file:include>
+                </file:consume>
+            </file:binding.file>
+        </sca:service>
+        <sca:component name="myCategory">
+            <sca:service name="myFileListener">
+                <interface.esb inputType="java:java.lang.String" />
+            </sca:service>
+            <camel:implementation.camel>
+                <camel:xml path="META-INF/route.xml" />
+            </camel:implementation.camel>
+        </sca:component>
+    </sca:composite>
+</switchyard>
