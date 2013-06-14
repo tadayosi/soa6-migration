@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.helloworld.SimpleListener">
+    <bean beanType="org.switchyard.quickstarts.udp_gateway.MyAction" method="displayMessage" />
+    <log message="[message] '${body}'" />
+</route>
