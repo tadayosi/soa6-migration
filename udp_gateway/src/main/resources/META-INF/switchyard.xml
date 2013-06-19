@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<switchyard xmlns="urn:switchyard-config:switchyard:1.0">
+    <composite xmlns="http://docs.oasis-open.org/ns/opencsa/sca/200912"
+        name="helloworld" xmlns:camel="urn:switchyard-component-camel-netty:config:1.0"
+        targetNamespace="urn:switchyard-quickstart:helloworld:0.1.0">
+        <service name="Service1" promote="UdpServiceCategory/Service1">
+            <camel:binding.udp
+                xmlns:camel="urn:switchyard-component-camel-netty:config:1.0">
+                <camel:host>localhost</camel:host>
+                <camel:port>9999</camel:port>
+                <camel:allowDefaultCodec>false</camel:allowDefaultCodec>
+                <camel:sync>false</camel:sync>
+            </camel:binding.udp>
+        </service>
+        <component name="UdpServiceCategory">
+            <service name="Service1">
+                <swyd:interface.esb
+                    xmlns:swyd="urn:switchyard-config:switchyard:1.0"
+                    inputType="java:java.lang.String" />
+            </service>
+            <implementation.camel
+                xmlns="urn:switchyard-component-camel:config:1.0">
+                <xml path="META-INF/route.xml" />
+            </implementation.camel>
+        </component>
+    </composite>
+</switchyard>
