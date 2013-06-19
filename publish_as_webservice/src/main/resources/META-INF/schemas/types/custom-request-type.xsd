@@ -1,0 +1,11 @@
+<xs:schema version="1.0" targetNamespace="http://www.jboss.org/custom-request" xmlns:cust="http://www.jboss.org/custom-request"
+    xmlns:sub="http://www.jboss.org/custom-subtype" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://www.jboss.org/custom-subtype" schemaLocation="./subtypes/custom-subtype-type.xsd" />
+    <xs:element name="customType" type="cust:CustomType" />
+    <xs:complexType name="CustomType">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string" minOccurs="1" />
+            <xs:element ref="sub:subType" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

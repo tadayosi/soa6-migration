@@ -44,6 +44,7 @@
         <module>helloworld_file_notifier</module>
         <module>helloworld_ftp_action</module>
         <module>helloworld_topic_notifier</module>
+        <module>publish_as_webservice</module>
         <module>webservice_consumer1</module>
         <module>webservice_proxy_basic</module>
     </modules>

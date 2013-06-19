@@ -1,0 +1,12 @@
+<xs:schema version="1.0" targetNamespace="http://www.jboss.org/custom-subtype" xmlns:sub="http://www.jboss.org/custom-subtype"
+    xmlns:t="http://www.jboss.org/type2" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://www.jboss.org/type2" schemaLocation="../type2-type.xsd" />
+    <xs:element name="subType" type="sub:SubType" />
+    <xs:complexType name="SubType">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string" minOccurs="0" />
+            <xs:element ref="t:type2" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+

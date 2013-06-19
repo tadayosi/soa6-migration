@@ -1,0 +1,11 @@
+<xs:schema version="1.0" targetNamespace="http://www.jboss.org/sayHi" xmlns:x1="http://www.jboss.org/sayHi"
+    xmlns:cust="http://www.jboss.org/custom-response" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:import namespace="http://www.jboss.org/custom-response" schemaLocation="types/custom-response-type.xsd" />
+    <xs:element name="sayHiResponse" type="x1:sayHiResponse" />
+    <xs:complexType name="sayHiResponse">
+        <xs:sequence>
+            <xs:element name="arg0" type="xs:string" minOccurs="0" />
+            <xs:element name="importedElement" type="cust:customType" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

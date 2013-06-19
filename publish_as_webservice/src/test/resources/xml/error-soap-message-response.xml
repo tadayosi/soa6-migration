@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+    <S:Body>
+        <S:Fault>
+            <faultcode xmlns:say="http://www.jboss.org/sayHi">say:myErrorCode</faultcode>
+            <faultstring>myDescription</faultstring>
+            <detail>
+                <say:sayFault xmlns:say="http://www.jboss.org/sayHi">
+                    <say:code>myErrorCode</say:code>
+                    <say:faultString>myDescription</say:faultString>
+                </say:sayFault>
+            </detail>
+        </S:Fault>
+    </S:Body>
+</S:Envelope>

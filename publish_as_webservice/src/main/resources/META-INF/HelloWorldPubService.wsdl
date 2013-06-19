@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions targetNamespace="http://soa.jboss.org/ESBServiceSample" xmlns:esbns1="http://www.jboss.org/sayHi"
+    xmlns:esbns2="http://www.jboss.org/sayHi" xmlns:esbns3="http://www.jboss.org/sayHi" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://soa.jboss.org/ESBServiceSample" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+    <wsdl:types>
+        <xs:schema targetNamespace="http://www.jboss.org/sayHi" version="1.0" xmlns:esbns1="http://www.jboss.org/sayHi"
+            xmlns:esbns2="http://www.jboss.org/sayHi" xmlns:esbns3="http://www.jboss.org/sayHi" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+            xmlns:tns="http://soa.jboss.org/ESBServiceSample" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="schemas/request.xsd" />
+        </xs:schema>
+        <xs:schema targetNamespace="http://www.jboss.org/sayHi" version="1.0" xmlns:esbns1="http://www.jboss.org/sayHi"
+            xmlns:esbns2="http://www.jboss.org/sayHi" xmlns:esbns3="http://www.jboss.org/sayHi" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+            xmlns:tns="http://soa.jboss.org/ESBServiceSample" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="schemas/response.xsd" />
+        </xs:schema>
+        <xs:schema targetNamespace="http://www.jboss.org/sayHi" version="1.0" xmlns:esbns1="http://www.jboss.org/sayHi"
+            xmlns:esbns2="http://www.jboss.org/sayHi" xmlns:esbns3="http://www.jboss.org/sayHi" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+            xmlns:tns="http://soa.jboss.org/ESBServiceSample" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+            <xs:include schemaLocation="schemas/fault.xsd" />
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="HelloWorldPubServiceRes">
+        <wsdl:part element="esbns3:sayHiResponse" name="out" />
+    </wsdl:message>
+    <wsdl:message name="HelloWorldPubServiceReq">
+        <wsdl:part element="esbns3:sayHi" name="in" />
+    </wsdl:message>
+    <wsdl:message name="HelloWorldPubServiceFault1">
+        <wsdl:part element="esbns3:sayFault" name="fault1" />
+    </wsdl:message>
+    <wsdl:portType name="HelloWorldPubServicePortType">
+        <wsdl:operation name="HelloWorldPubServiceOp">
+            <wsdl:input message="tns:HelloWorldPubServiceReq" name="HelloWorldPubServiceReq" />
+            <wsdl:output message="tns:HelloWorldPubServiceRes" name="HelloWorldPubServiceRes" />
+            <wsdl:fault message="tns:HelloWorldPubServiceFault1" name="fault1" />
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="HelloWorldPubServiceBinding" type="tns:HelloWorldPubServicePortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="HelloWorldPubServiceOp">
+            <soap:operation soapAction="http://soa.jboss.org/ESBServiceSample/HelloWorldPubServiceOp" />
+            <wsdl:input name="HelloWorldPubServiceReq">
+                <soap:body use="literal" />
+            </wsdl:input>
+            <wsdl:output name="HelloWorldPubServiceRes">
+                <soap:body use="literal" />
+            </wsdl:output>
+            <wsdl:fault name="fault1">
+                <soap:fault name="fault1" use="literal" />
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="HelloWorldPubService">
+        <wsdl:port binding="tns:HelloWorldPubServiceBinding" name="HelloWorldPubServicePortType">
+            <soap:address location="http://localhost:8080/Quickstart_publish_as_webservice/HelloWorldPubService" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,10 @@
+<xs:schema version="1.0" targetNamespace="http://www.jboss.org/type2" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:t="http://www.jboss.org/type2" elementFormDefault="qualified">
+    <xs:element name="type2" type="t:Type2" />
+    <xs:complexType name="Type2">
+        <xs:sequence>
+            <xs:element name="type" type="xs:string" minOccurs="0" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
+
