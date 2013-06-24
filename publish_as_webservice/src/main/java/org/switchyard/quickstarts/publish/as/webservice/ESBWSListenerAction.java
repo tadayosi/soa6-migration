@@ -2,7 +2,7 @@ package org.switchyard.quickstarts.publish.as.webservice;
 
 import org.switchyard.component.bean.Service;
 
-@Service(HelloWorldPubService.class)
+@Service(value = HelloWorldPubService.class, componentName = "ESBServiceSample")
 public class ESBWSListenerAction implements HelloWorldPubService {
     
     public String displayMessage(String message) {
