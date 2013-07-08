@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.udp.gateway.Service1">
+    <from uri="switchyard://Service1" />
     <log message="[message] '${body}'" />
 </route>

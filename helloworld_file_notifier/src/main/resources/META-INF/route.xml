@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.helloworld.file.notifier.SimpleListener">
+    <from uri="switchyard://SimpleListener" />
     <multicast>
         <to uri="switchyard://DisplayRouterListener" />
         <to uri="switchyard://FileRouterListener" />
