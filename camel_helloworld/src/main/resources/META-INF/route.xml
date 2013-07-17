@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.camel.helloworld.service1">
+    <from uri="switchyard://service1" />
+    <log message="[message] '${body}'" />
+</route>
