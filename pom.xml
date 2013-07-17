@@ -38,6 +38,7 @@
         <url>http://jboss.org</url>
     </organization>
     <modules>
+        <module>camel_helloworld</module>
         <module>helloworld</module>
         <module>helloworld_action</module>
         <module>helloworld_file_action</module>
