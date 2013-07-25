@@ -1,5 +1,8 @@
 package org.switchyard.quickstarts.helloworld.ftp.action;
 
+import javax.inject.Named;
+
+@Named
 public class MyAction {
     
     public String noOperation(String message) {

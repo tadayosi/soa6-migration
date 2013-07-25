@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <route xmlns="http://camel.apache.org/schema/spring" id="org.switchyard.quickstarts.helloworld.SimpleListener">
     <from uri="switchyard://SimpleListener" />
-    <bean beanType="org.switchyard.quickstarts.helloworld.MyJMSListenerAction" method="displayMessage" />
+    <to uri="bean:myJMSListenerAction?method=displayMessage" />
     <log message="[message] '${body}'" />
 </route>

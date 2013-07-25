@@ -1,5 +1,8 @@
 package org.switchyard.quickstarts.helloworld.action;
 
+import javax.inject.Named;
+
+@Named
 public class MyJMSListenerAction {
     
     public String noOperation(String message) {

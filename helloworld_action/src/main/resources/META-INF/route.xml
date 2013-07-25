@@ -3,8 +3,8 @@
     errorHandlerRef="loggingErrorHandler">
     <from uri="switchyard://SimpleListener" />
     <log message="[message] '${body}'" />
-    <bean beanType="org.switchyard.quickstarts.helloworld.action.MyJMSListenerAction" method="displayMessage" />
-    <bean beanType="org.switchyard.quickstarts.helloworld.action.MyJMSListenerAction" method="playWithMessage" />
+    <to uri="bean:myJMSListenerAction?method=displayMessage" />
+    <to uri="bean:myJMSListenerAction?method=playWithMessage" />
     <setHeader headerName="quickstart">
         <constant>hello_world_action</constant>
     </setHeader>

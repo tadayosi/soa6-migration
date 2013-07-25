@@ -1,5 +1,8 @@
 package org.switchyard.quickstarts.helloworld;
 
+import javax.inject.Named;
+
+@Named
 public class MyJMSListenerAction {
     
     public String displayMessage(String message) throws Exception {
