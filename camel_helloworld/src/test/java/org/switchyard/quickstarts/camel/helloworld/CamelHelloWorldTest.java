@@ -39,7 +39,6 @@ public class CamelHelloWorldTest {
     
     @Test
     public void receiveFile() throws Exception {
-        // TODO Why NPE?
         _testKit.removeService(SERVICE);
         MockHandler service = _testKit.registerInOnlyService(SERVICE);
         
@@ -63,7 +62,7 @@ public class CamelHelloWorldTest {
         File inputFile2 = new File(INPUT2_DIR, FILE_NAME);
         FileUtils.writeStringToFile(inputFile1, FILE_CONTENTS1);
         FileUtils.writeStringToFile(inputFile2, FILE_CONTENTS2);
-        Thread.sleep(100);
+        Thread.sleep(500);
         assertThat(inputFile1.exists(), is(false));
         assertThat(inputFile2.exists(), is(false));
     }

@@ -6,7 +6,7 @@
         <file:contextMapper/>
         <file:directory>${project.build.directory}/input1</file:directory>
         <file:consume>
-          <file:initialDelay>10</file:initialDelay>
+          <file:initialDelay>100</file:initialDelay>
           <file:delay>10</file:delay>
           <file:delete>true</file:delete>
         </file:consume>
@@ -15,7 +15,7 @@
         <file:contextMapper/>
         <file:directory>${project.build.directory}/input2</file:directory>
         <file:consume>
-          <file:initialDelay>10</file:initialDelay>
+          <file:initialDelay>100</file:initialDelay>
           <file:delay>10</file:delay>
           <file:delete>true</file:delete>
         </file:consume>
