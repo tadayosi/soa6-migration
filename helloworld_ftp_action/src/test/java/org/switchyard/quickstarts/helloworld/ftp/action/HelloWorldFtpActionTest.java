@@ -22,13 +22,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.switchyard.Exchange;
 import org.switchyard.component.camel.model.RouteScanner;
+import org.switchyard.component.test.mixins.cdi.CDIMixIn;
 import org.switchyard.test.MockHandler;
 import org.switchyard.test.SwitchYardRunner;
 import org.switchyard.test.SwitchYardTestCaseConfig;
 import org.switchyard.test.SwitchYardTestKit;
 
 @RunWith(SwitchYardRunner.class)
-@SwitchYardTestCaseConfig(config = SwitchYardTestCaseConfig.SWITCHYARD_XML, scanners = RouteScanner.class)
+@SwitchYardTestCaseConfig(
+        config = SwitchYardTestCaseConfig.SWITCHYARD_XML,
+        mixins = CDIMixIn.class,
+        scanners = RouteScanner.class)
 public class HelloWorldFtpActionTest {
     
     private static final int FTP_PORT = 2222;
