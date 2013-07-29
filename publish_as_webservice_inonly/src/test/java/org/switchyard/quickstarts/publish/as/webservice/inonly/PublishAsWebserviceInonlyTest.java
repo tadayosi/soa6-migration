@@ -75,11 +75,13 @@ public class PublishAsWebserviceInonlyTest {
     @Test
     public void runTest() throws Exception {
         _httpMixIn.postResource(WEB_SERVICE, "/xml/soap-userpass-message.xml");
+        Thread.sleep(500);
     }
     
     @Test
     public void runTest_error() throws Exception {
         _httpMixIn.postResource(WEB_SERVICE, "/xml/error-soap-message.xml");
+        Thread.sleep(500);
     }
     
 }

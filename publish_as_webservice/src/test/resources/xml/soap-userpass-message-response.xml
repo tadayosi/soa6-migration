@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
-    <S:Body>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+    <SOAP-ENV:Header />
+    <SOAP-ENV:Body>
         <say:sayHiResponse xmlns:say="http://www.jboss.org/sayHi">
             <say:arg0>Response from ESB Service</say:arg0>
         </say:sayHiResponse>
-    </S:Body>
-</S:Envelope>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

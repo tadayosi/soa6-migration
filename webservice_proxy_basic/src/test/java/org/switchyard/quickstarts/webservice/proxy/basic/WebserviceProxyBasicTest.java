@@ -41,7 +41,7 @@ public class WebserviceProxyBasicTest {
     
     @Test
     public void testProxyService() throws Exception {
-        _httpMixIn.postResourceAndTestXML(PROXY_SERVICE, "/xml/soap-request.xml", "/xml/soap-response.xml");
+        _httpMixIn.postResourceAndTestXML(PROXY_SERVICE, "/xml/soap-request.xml", "/xml/soap-response-proxy.xml");
     }
     
 }
