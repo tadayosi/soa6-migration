@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservice_consumer2/orderProcessor"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://webservice_consumer2/orderProcessor"
+    name="OrderProcessorWSService">
+    <types>
+        <xsd:schema>
+            <xsd:complexType name="order">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:long" minOccurs="0" />
+                    <xsd:element name="lineItems" type="tns:lineItem" nillable="true" minOccurs="0"
+                        maxOccurs="unbounded" />
+                    <xsd:element name="shipTo" type="xsd:string" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="lineItem">
+                <xsd:sequence>
+                    <xsd:element name="id" type="xsd:long" minOccurs="0" />
+                    <xsd:element name="name" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="price" type="xsd:float" minOccurs="0" />
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="orderStatus">
+                <xsd:sequence>
+                    <xsd:element name="comment" type="xsd:string" minOccurs="0" />
+                    <xsd:element name="id" type="xsd:long" minOccurs="0" />
+                    <xsd:element name="returnCode" type="xsd:int" />
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </types>
+    <message name="processOrder">
+        <part name="order" type="tns:order" />
+    </message>
+    <message name="processOrderResponse">
+        <part name="return" type="tns:orderStatus" />
+    </message>
+    <portType name="OrderProcessor">
+        <operation name="processOrder">
+            <input message="tns:processOrder" />
+            <output message="tns:processOrderResponse" />
+        </operation>
+    </portType>
+    <binding name="OrderProcessorPortBinding" type="tns:OrderProcessor">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+        <operation name="processOrder">
+            <soap:operation soapAction="" />
+            <input>
+                <soap:body use="literal" namespace="http://webservice_consumer2/orderProcessor" />
+            </input>
+            <output>
+                <soap:body use="literal" namespace="http://webservice_consumer2/orderProcessor" />
+            </output>
+        </operation>
+    </binding>
+    <service name="OrderProcessorWSService">
+        <port name="OrderProcessorPort" binding="tns:OrderProcessorPortBinding">
+            <soap:address location="http://localhost:8080/Quickstart_webservice_consumer2/OrderProcessorWS" />
+        </port>
+    </service>
+</definitions>

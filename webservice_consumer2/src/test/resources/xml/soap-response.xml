@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/">
+    <S:Body>
+        <ns2:processOrderResponse xmlns:ns2="http://webservice_consumer2/orderProcessor">
+            <return>
+                <comment>order processed</comment>
+                <id>1</id>
+                <returnCode>1</returnCode>
+            </return>
+        </ns2:processOrderResponse>
+    </S:Body>
+</S:Envelope>

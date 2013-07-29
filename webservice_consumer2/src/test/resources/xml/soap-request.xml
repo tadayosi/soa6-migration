@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns2="http://webservice_consumer2/orderProcessor">
+    <S:Body>
+        <ns2:processOrder>
+            <order>
+                <id>1</id>
+                <shipTo>1234 my way</shipTo>
+                <lineItems>
+                    <id>1</id>
+                    <name>item name b</name>
+                    <price>20.00</price>
+                </lineItems>
+                <lineItems>
+                    <id>2</id>
+                    <name>item name c</name>
+                    <price>30.00</price>
+                </lineItems>
+            </order>
+        </ns2:processOrder>
+    </S:Body>
+</S:Envelope>
